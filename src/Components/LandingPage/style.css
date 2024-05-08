@@ -1,0 +1,63 @@
+.landingPage{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2.5rem;
+}
+
+.landingPage__left > h1{
+    font-size: 7rem;
+    font-weight: 800;
+}
+
+.landingPage__trackText{
+    color:var(--white);
+    transition: all .5s;
+}
+
+.landingPage__trackText:hover{
+    -webkit-text-stroke: .14rem;
+    color:var(--black);
+    -webkit-text-stroke-color: var(--white);
+}
+
+.landingPage__realText{
+    color:var(--blue);
+}
+
+.landingPage__left > p{
+    color:var(--grey);
+    margin-top:1rem;
+    font-size: 1.2rem;
+}
+
+.landingPage__buttons{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap:1rem;
+    margin-top:2rem;
+}
+
+.landingPage__right{
+    position: relative;
+    width:50%;
+    margin-left: auto;
+}
+
+.gradient_img{
+    position: absolute;
+    right: 9px;
+    top: -80px;
+    min-width: 250px;
+    width:40%;
+}
+
+.phone_img{
+    position: absolute;
+    top:-180px;
+    right: 10px;
+    min-width: 300px;
+    z-index: 100;
+    width:50%;
+}

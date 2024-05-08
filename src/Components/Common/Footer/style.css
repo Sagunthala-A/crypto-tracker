@@ -1,0 +1,44 @@
+.footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin:auto;
+    padding:2.3rem;
+    border-radius: 1rem;
+    margin: 3rem;
+    margin-top: 25rem;
+    background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(31, 83, 198, 1) 0%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  /* background-size: 400% 400%;
+  animation: gradient 4s ease infinite; */
+}
+/* @keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+} */
+
+.footer h2{
+    cursor: pointer;
+}
+
+.footer__left{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap:1rem;
+}
+
+.footer__left > p{
+    cursor: pointer;
+}

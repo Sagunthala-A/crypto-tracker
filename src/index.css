@@ -1,10 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
 :root{
-  --black:rgb(24, 24, 24);
+  --black:rgb(21, 20, 20);
   --white:rgb(234, 226, 226);
-  --blue:#3980E9;
-  --grey:#888888;
+  --blue:#3a80e9;
+  --grey:#888;
+  --darkgrey:#1b1b1b;
+  --green:#61c96f;
+  --red:#f94141;
 }
 
 *{
@@ -41,11 +44,4 @@ body {
 
 a{
   text-decoration: none;
-  color:var(--grey);
-  transition: all .3s;
-  font-weight: 600;
-}
-
-a:hover{
-  color:white;
 }

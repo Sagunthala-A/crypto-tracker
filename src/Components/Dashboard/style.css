@@ -1,0 +1,25 @@
+.grid{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap:1.5rem;
+    margin:.3rem 1rem; 
+    justify-content: center;
+}
+
+.list{
+    /* display:flex;
+    align-items: center;
+    justify-content: space-between; */
+    
+    width:90%;
+    display: block;
+    margin-left: auto;
+    margin-right:auto;
+}
+
+@media screen and (max-width:600px){
+    .list{
+        width:100% !important;
+    }
+}

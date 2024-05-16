@@ -1,0 +1,116 @@
+.grid__container{
+    width:340px;
+    height:340px;
+    background-color:var(--darkgrey);
+    color:var(--grey);
+    border-radius: 1.5rem;
+    padding:2rem;
+    border:.1rem solid var(--darkgrey);
+    transition: all .3s;
+}
+
+.grid__container:hover{
+    border:2px solid var(--green);
+}
+
+.grid__logo{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap:1rem;
+}
+
+.grid__logo > img{
+    border-radius: 50%;
+    height: 3.5rem;
+    object-fit: cover;
+    width: 3.5rem;
+}
+
+.grid__logoName{
+    display: flex;
+    justify-content: center;
+    flex-direction: column; 
+    align-items: flex-start;
+    gap:.4rem;
+}
+
+.grid__logoName > h4{
+    font-weight: 600;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    color:var(--white);
+}
+
+.grid__logoName > p{
+    text-transform: capitalize;
+    color:var(--grey);
+}
+
+.chip__flex{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    margin-top:1.5rem ;
+}
+
+.price__chip{
+    border:2px solid var(--green);
+    border-radius: 3rem;
+    padding:.5rem 1.5rem;
+    text-align: center;
+    font-weight: 600;
+    transition: all .3s;
+}
+
+.icon__chip{
+    border:2px solid var(--green);
+    border-radius: 50%;
+    padding:.45rem;
+    width: 2.6rem;
+    height:2.6rem;
+    transition: all .3s;
+}
+
+.price__chip:hover,.icon__chip:hover{
+    background-color: var(--green);
+    color:var(--white);
+}
+
+.coin__currentPrice{
+    color:var(--green);
+    margin-top: 1.5rem;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.coin__valueContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap:.8rem;
+    margin-top: 1.5rem;
+}
+
+.coin__valueContainer > p{
+    font-size: 1rem;
+    font-weight:600;
+}
+
+.redGrid,.redChip{
+    transition: all .3s;
+}
+
+.redGrid:hover,.redChip{
+    border:2px solid var(--red);
+}
+
+.redChip:hover{
+    background-color: var(--red);
+}
+
+.redCurrentPrice{
+    color:var(--red) !important;
+}

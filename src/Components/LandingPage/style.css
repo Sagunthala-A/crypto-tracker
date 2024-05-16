@@ -1,8 +1,12 @@
 .landingPage{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2.5rem;
+    align-items: flex-start;
+    padding: 1.5rem 3rem;
+    gap:2rem;
+}
+
+.landingPage__left{
+    margin-right:1rem;
 }
 
 .landingPage__left > h1{
@@ -13,6 +17,7 @@
 .landingPage__trackText{
     color:var(--white);
     transition: all .5s;
+    /* margin-right:10rem; */
 }
 
 .landingPage__trackText:hover{
@@ -23,12 +28,14 @@
 
 .landingPage__realText{
     color:var(--blue);
+    /* margin-right:19rem; */
 }
 
 .landingPage__left > p{
     color:var(--grey);
     margin-top:1rem;
     font-size: 1.2rem;
+    margin-right:19rem;
 }
 
 .landingPage__buttons{
@@ -40,24 +47,100 @@
 }
 
 .landingPage__right{
+    display: flex;
+    justify-content: flex-end;
     position: relative;
-    width:50%;
     margin-left: auto;
 }
 
 .gradient_img{
     position: absolute;
     right: 9px;
-    top: -80px;
+    top: 100px;
     min-width: 250px;
-    width:40%;
+    width:290px;
 }
 
 .phone_img{
     position: absolute;
-    top:-180px;
+    top:0px;
     right: 10px;
     min-width: 300px;
     z-index: 100;
-    width:50%;
+    width:350px;
+}
+
+@media screen and (max-width:1200px){
+    .landingPage__left > h1{
+        font-size: 5rem;
+    }
+    .landingPage__left > p{
+        font-size: 1rem;
+    }
+    .gradient_img{
+        width: 250px;
+    }
+    .phone_img{
+        width: 300px;
+    }
+}
+
+@media screen and (max-width:1050px){
+    .landingPage__left > h1{
+        font-size: 4rem;
+    }
+    .gradient_img{
+        min-width: 230px;
+        width: 230px;
+    }
+    .phone_img{
+        min-width: 280px;
+        width: 280px;
+    }
+}
+
+@media screen and (max-width:800px){
+    .landingPage{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin:auto;
+        text-align: center;
+    }
+    .landingPage__left{
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .landingPage__left > h1 {
+        font-size:3.2rem;
+    }
+    .landingPage__left > p{
+    margin:1rem 5rem;
+    }
+    .landingPage__buttons{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap:1rem;
+        margin-top:2rem;
+}
+.landingPage__right{
+    align-items: center;
+    justify-content: center;
+    margin:auto;
+}
+.gradient_img{
+    top: 110px;
+    width: 200px !important;
+    left:-80px;
+    right:0;
+}
+
+.phone_img{
+    left:-120px;
+    top:20px;
+    width: 250px !important;
+}
 }

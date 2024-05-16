@@ -3,7 +3,7 @@ import './style.css';
 import Button from '../Common/Button';
 import Phone from '../../Assets/phone.png';
 import Gradient from '../../Assets/gradient.png';
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 
 function LandingPage() {
   return (
@@ -20,21 +20,22 @@ function LandingPage() {
                 className='landingPage__realText'
                 initial={{ opacity: 0, y: 60 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1, duration: .4 }}
+                transition={{ delay: .8, duration: .4 }}
             >Real Time.</motion.h1>
             <motion.p
                 initial={{ opacity: 0, y: 120 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.5, duration: .4 }}
+                transition={{ delay: 1.1, duration: .4 }}
             >Track crypto through a public api in real time. Visit the dashboard to do so!</motion.p>
             <motion.div 
                 className='landingPage__buttons'
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 2, duration: .4 }}
+                transition={{ delay: 1.5, duration: .4 }}
             >
                 <Button 
                     text={"Dashboard"}
+                    linkTo={"/dashboard"}
                 />
                 <Button 
                     text={"Share App"}
@@ -62,4 +63,4 @@ function LandingPage() {
   )
 }
 
-export default LandingPage
+export default LandingPage;

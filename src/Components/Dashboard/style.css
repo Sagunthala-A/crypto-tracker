@@ -17,6 +17,19 @@
     margin-left: auto;
     margin-right:auto;
 }
+.no__items{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:2rem;
+    margin-top: 0rem !important;
+    padding: 0rem !important;
+    width: 100% !important;
+}
+.grid__noItems{
+    margin-top: 3.3rem !important;
+}
 
 @media screen and (max-width:600px){
     .list{

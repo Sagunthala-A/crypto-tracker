@@ -1,0 +1,26 @@
+.search__wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap:.5rem;
+    background-color:var(--darkgrey);
+    width:80%;
+    margin:1rem auto;
+    padding:1rem 2rem;
+    border-radius:4rem;
+    color:var(--grey);
+}
+
+.search__wrapper > input{
+    width: 100%;
+    border:none;
+    color:var(--grey) !important;
+    background-color: var(--darkgrey);
+    font-size: 1.2rem;
+    font-family: "Inter";
+    border: 0px solid #000;
+}
+
+.search__wrapper > input:focus{
+    outline: none;
+}

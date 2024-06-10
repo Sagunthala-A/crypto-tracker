@@ -1,0 +1,27 @@
+.backToTop__container{
+    border:2px solid var(--blue);
+    width:4rem;
+    height: 4rem;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--darkgrey);
+    color:var(--blue);
+    position: fixed;
+    bottom:2rem;
+    right:2rem;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.backToTop__container:hover{
+    background-color: var(--blue);
+    color: var(--darkgrey) !important;
+    transition: all 0.3s;
+}
+
+.backToTop__arrow{
+    font-size: 2.7rem !important;
+    
+}

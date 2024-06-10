@@ -8,6 +8,7 @@ import Grid from './Grid';
 import List from './List';
 import './style.css';
 import Button from '../Common/Button';
+import { Link } from 'react-router-dom';
 
 export default function LabTabs({data,setSearch}) {
   const [value, setValue] = useState('1');
@@ -51,13 +52,7 @@ export default function LabTabs({data,setSearch}) {
             data.map((coin, ind) => <Grid coin={coin} key={ind} />)
           ) : (
             <div className="no__items grid__noItems">
-              <h1
-                onClick={() => {
-                  console.log("sdf");
-                }}
-              >
-                Sorry, Couldn't find the coin you're looking for 😞
-              </h1>
+              <h1>Sorry, Couldn't find the coin you're looking for 😞</h1>
               <Button
                 text={"Clear Search"}
                 onClick={() => {
@@ -66,13 +61,14 @@ export default function LabTabs({data,setSearch}) {
               ></Button>
             </div>
           )}
-          {/* <Grid data={data}/> */}
         </TabPanel>
         <TabPanel value="2" className="list">
           {data.length > 0 ? (
             <table>
               {data.map((coin, ind) => (
-                <List coin={coin} key={ind} />
+                // <Link to={`/coin/${coin.id}`}>
+                  <List coin={coin} key={ind} />
+                // </Link>
               ))}
             </table>
           ) : (

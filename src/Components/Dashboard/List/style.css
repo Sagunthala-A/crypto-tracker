@@ -3,7 +3,7 @@
   display: inline-table;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 0.5rem;
+  margin-bottom: .5rem;
   padding: 1rem 2rem !important;
   border-radius:1rem;
   cursor: pointer;
@@ -16,36 +16,33 @@
 
 .list__row  > td{
   width:20%;
+/* style-2 */
+  /* display: table-cell;
+  vertical-align: middle; */
+
 }
 
 .td__logo{
-  margin-bottom: 1rem !important;
   width:5rem !important;
 }
 
 .td__logo > img{
+/* style-2 comment margin bottom */
+    margin-bottom: -1.9rem !important;
+
     border-radius: 50%;
     height: 3.5rem;
     width: 3.5rem;
 }
 
-.td__logoName{
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    flex-direction: column;
-    gap:.5rem;
+.td__logoNameInfo{
     margin-left:1rem !important;
     min-width:50% !important;
-}
-.td__logoNameInfo{
     display: flex;
     align-items: flex-start;
     justify-content: center;
     flex-direction: column;
     gap:.5rem;
-    /* margin-left:1rem !important;
-    min-width:50% !important; */
 }
 
 .td__logoNameInfo{
@@ -65,12 +62,16 @@
 }
 
 .td__chip__flex{
-    display: flex;
+    display: flex !important;
     align-items: flex-start;
     justify-content: space-between;
     gap: 3rem;
     margin-left:1rem !important;
     margin-right:1rem;
+    color:var(--green) !important;
+    margin-top:.6rem !important;
+    /* display: flex !important;
+    vertical-align: middle; */
 }
 
 .price__chip{
@@ -89,6 +90,7 @@
   font-size: 1.01rem;
   font-weight: 600;
   text-align: right !important;
+  color:var(--white);
 }
 
 /* .td__coinMarkCap{
@@ -111,19 +113,23 @@
     width:2rem !important;
   }
 
-  .td__logoName{
-    width:4rem !important;
+  .td__logoNameInfo{
+    width:3rem !important;
+    margin-right:2rem !important;
   }
 
   .td__logo > img{
     height: 2rem !important;
     width: 2rem !important;
+    margin-bottom: -1.3rem !important;
+    /* margin-bottom: 0rem !important; */
   }
 
   .td__chip__flex{
     margin-left:1rem !important;
-    margin-right:0rem;
+    margin-right:1rem;
     width:3rem !important;
+    /* margin-bottom: 1.5rem; */
   }
 
   .td__priceChip{
@@ -131,6 +137,7 @@
     font-size: .6rem !important;
     min-width: 2rem !important;
     padding: .25rem .5rem !important;
+    color:var(--green);
 }
 
 .td__coin__currentPrice{
@@ -144,13 +151,14 @@
 
 .td__logoNameInfo > h4{
     font-size: 1.2rem;
+    width: 0rem !important;
 }
 
 .td__logoNameInfo > p{
   font-size: .9rem;
 }
-.icon__chip{
-    display: none;
+.td__iconChip{
+    display: none !important;
   }
 }
 
@@ -181,11 +189,11 @@
   .td__coinTotVol,
   .td__coinMarkCap,
   .td__coinCurrentPriceDesktop{
-    display: none;
+    display: none !important;
   }
   .td__coinMarkCapMobile,
   .td__coinCurrentPriceMobile{
-    display: block;
+    display:  block !important;
   }
   .td__coinMarkCapMobile{
     font-size: .9rem;
@@ -194,7 +202,7 @@
 
 @media screen and (max-width:400px){
   .td__chip__flex{
-    display: none;
+    display: none !important;
   }
   .td__logoName{
     /* width:1.4rem !important; */
@@ -212,5 +220,10 @@
 }
 .td__coin__valueContainer > span{
     font-size: .7rem !important;
+  }
+  .watchlist-icon {
+    width:2rem !important;
+    height: 2rem !important;
+    padding: 0.35rem;
   }
 }

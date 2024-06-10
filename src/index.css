@@ -16,6 +16,11 @@
   box-sizing: border-box;
 }
 
+/* This CSS property applies smooth scrolling behavior to all scrollable elements within the <html> element, including the <body> */
+html {
+    scroll-behavior: smooth;
+}
+
 body {
   font-family: "Inter",sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -44,4 +49,53 @@ body {
 
 a{
   text-decoration: none;
+  /* color:var(--white); */
+}
+
+/* coin page styles */
+
+.coin__listWrapper{
+  padding:.5rem !important;
+  background-color:var(--darkgrey);
+  border-radius: 1rem;
+  margin:1.5rem auto;
+  width:90%;
+}
+
+.coin__list{
+  padding:1rem !important;
+}
+
+.coinPage__loader{
+  width:auto !important;
+  overflow: hidden !important;
+  height: 58vh !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lineChart__wrapper{
+    display: block;
+    /* display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center; */
+}
+
+/* compare page */
+.comparePage__select{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap:3rem;
+  margin-bottom: 2rem;
+}
+
+@media screen and (max-width:800px){
+  .comparePage__select{
+    justify-content: space-evenly;
+    gap:0rem !important;
+    font-size: .9rem !important;
+  }
 }

@@ -11,12 +11,13 @@ function Header() {
         <div className='header__left'>
             <button>toggle </button>
             <Link className='header__links' to='/'>Home</Link>
-            <Link className='header__links'>Compare</Link>
+            <Link className='header__links' to='/compare'>Compare</Link>
             <Link className='header__links'>Watchlist</Link>
             <Link className='header__links' to='/dashboard'>
                 <Button
                     text={"Dashboard"}
                     outlined = {false}
+                    linkTo={"/dashboard"}
                 />
             </Link>
         </div>

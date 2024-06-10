@@ -16,11 +16,17 @@
 .grid__logo{
     display: flex;
     align-items: center;
+    justify-content:space-between;
+}
+
+.gridLogo__imgName{
+    display: flex;
+    align-items: center;
     justify-content: flex-start;
     gap:1rem;
 }
 
-.grid__logo > img{
+.grid__logo  img{
     border-radius: 50%;
     height: 3.5rem;
     object-fit: cover;
@@ -35,16 +41,17 @@
     gap:.4rem;
 }
 
-.grid__logoName > h4{
+.grid__logoName  h4{
     font-weight: 600;
     font-size: 1.3rem;
     text-transform: uppercase;
     color:var(--white);
 }
 
-.grid__logoName > p{
+.grid__logoName  p{
     text-transform: capitalize;
     color:var(--grey);
+    width:1rem;
 }
 
 .chip__flex{
@@ -53,6 +60,7 @@
     justify-content: flex-start;
     gap: 1.5rem;
     margin-top:1.5rem ;
+    color:var(--green) !important;
 }
 
 .price__chip{
@@ -99,6 +107,10 @@
     font-weight:600;
 }
 
+.redChip{
+    color:var(--red) !important;
+}
+
 .redGrid,.redChip{
     transition: all .3s;
 }
@@ -109,8 +121,60 @@
 
 .redChip:hover{
     background-color: var(--red);
+    color: var(--white) !important;
 }
 
 .redCurrentPrice{
     color:var(--red) !important;
+}
+
+.watchlist-icon {
+  padding: 0.5rem;
+  display: block;
+  color: var(--green);
+  /* font-size: 2rem !important; */
+  margin-left: auto;
+  border: 2px solid var(--green);
+  border-radius: 3rem;
+  font-weight: 600;
+  width:3rem !important;
+  height: 3rem !important;
+}
+
+.watchlist-icon:hover {
+  background-color: var(--green);
+  color: var(--white);
+  transition: all 0.3s;
+}
+
+.watchlist-icon-red {
+  color: var(--red);
+  border: 2px solid var(--red);
+  display: block;
+}
+
+.watchlist-icon-red:hover {
+  background-color: var(--red) !important;
+  color: var(--white);
+  transition: all 0.3s;
+}
+
+.star__icon{
+    margin-left: 5rem;
+}
+
+@media only screen and (max-width: 800px) {
+  .watchlist-icon {
+    width:2.2rem !important;
+    height: 2.2rem !important;
+    padding: 0.35rem;
+  }
+}
+
+@media screen and (max-width:400px) {
+    .grid__container{
+        width:230px;
+        height:350px;
+        padding:1.5rem;
+    }
 }

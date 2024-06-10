@@ -22,7 +22,7 @@ export default function AnchorTemporaryDrawer() {
       <Drawer anchor="right" open={open} onClose={() => setOpen(false)} >
         <div className="drawer-links">
             <Link className='header__links' to='/'>Home</Link>
-            <Link className='header__links'>Compare</Link>
+            <Link className='header__links' to='/compare'>Compare</Link>
             <Link className='header__links'>Watchlist</Link>
             <Link className='header__links' to='/dashboard'>Dashboard</Link>
         </div>

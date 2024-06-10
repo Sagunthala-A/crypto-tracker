@@ -1,0 +1,11 @@
+.api__rejected{
+    font-weight: 600;
+    margin:5rem;
+    text-align: center;
+    padding:2rem 2rem;
+    color:var(--white);
+}
+
+.api__rejected > span {
+    color:var(--red);
+}

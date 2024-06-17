@@ -7,12 +7,12 @@ import { motion } from "framer-motion";
 
 function LandingPage() {
       const handleShare = async () => {
-        if (navigator.share) {
+        if (navigator.share) { // check browser support navigator.share becoz not every browser supports this sharing feature
           try {
             await navigator.share({
               title: "Crypto Tracker App",
               text: "Check out this awesome Crypto Tracker app!",
-              url: window.location.href,
+              url: window.location.href
             });
             console.log("App shared successfully");
           } catch (error) {
@@ -20,7 +20,6 @@ function LandingPage() {
           }
         } else {
           console.log("Web Share API not supported in this browser");
-          // You can also implement a fallback here for unsupported browsers
         }
       };
   return (

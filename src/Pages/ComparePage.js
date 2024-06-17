@@ -89,7 +89,7 @@ function ComparePage() {
             // }
             if(cryptoData1){
               setChart1Data(cryptoData1);
-              etIsLoading(false);
+              setIsLoading(false);
             }
         }
         // setIsLoading(false);

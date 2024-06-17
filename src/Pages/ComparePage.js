@@ -39,6 +39,7 @@ function ComparePage() {
         const data = await get100Coins();
         if(data){
           setAllCoins(data);
+          setIsLoading(false);
         }
         await getCoinData(coin1, setCoin1Data, setIsLoading);
         const data2 = await getCoinData(coin2, setCoin2Data, setIsLoading);

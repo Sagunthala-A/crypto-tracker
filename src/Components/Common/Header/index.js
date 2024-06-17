@@ -1,52 +1,56 @@
-import React, { useEffect, useState } from 'react';
-import './style.css';
-import Button from '../Button';
-import { Link } from 'react-router-dom';
-import Drawer from './Drawer'
-import { Switch } from '@mui/material';
-import { toast } from 'react-toastify';
+import React, { useEffect, useState } from "react";
+import "./style.css";
+import Button from "../Button";
+import { Link } from "react-router-dom";
+import Drawer from "./Drawer";
+import { Switch } from "@mui/material";
+import { toast } from "react-toastify";
 
 function Header() {
-    const [lightMode, setLightMode] = useState(
-      localStorage.getItem("theme") === "light"
-    );
+  // Default to dark mode if there is no theme in localStorage
+   const [darkMode, setDarkMode] = useState(
+     localStorage.getItem("theme") === "dark" ||
+       localStorage.getItem("theme") == null
+   );
 
-    useEffect(() => {
-      const theme = localStorage.getItem("theme");
-      if (theme === "light") {
-        handleLight();
-      } else {
-        handleDark();
-      }
-    }, []);
+   useEffect(() => {
+     const theme = localStorage.getItem("theme");
+     if (!theme) {
+       handleDark();
+     } else if (theme === "dark") {
+       handleDark();
+     } else {
+       handleLight();
+     }
+   }, []);
 
-    const changeMode = () => {
-      if (localStorage.getItem("theme") !== "dark") {
-        handleDark();
-      } else {
-        handleLight();
-      }
-      setLightMode(!lightMode);
-      toast.success("Theme Changed!");
-    };
+   const changeMode = () => {
+     if (darkMode) {
+       handleLight();
+     } else {
+       handleDark();
+     }
+     setDarkMode(!darkMode);
+     toast.success("Theme Changed!");
+   };
 
-    const handleDark = () => {
-      localStorage.setItem("theme", "dark");
-      document.documentElement.setAttribute("data-theme", "dark");
-    };
+   const handleDark = () => {
+     localStorage.setItem("theme", "dark");
+     document.documentElement.setAttribute("data-theme", "dark");
+   };
 
-    const handleLight = () => {
-      localStorage.setItem("theme", "light");
-      document.documentElement.setAttribute("data-theme", "light");
-    };
-    
+   const handleLight = () => {
+     localStorage.setItem("theme", "light");
+     document.documentElement.setAttribute("data-theme", "light");
+   };
+
   return (
     <div className="header">
       <h1>
         CryptoTracker<span>.</span>
       </h1>
       <div className="header__left">
-        <Switch checked={lightMode} onClick={() => changeMode()} />
+        <Switch checked={darkMode} onClick={changeMode} />
         <Link className="header__links" to="/">
           Home
         </Link>

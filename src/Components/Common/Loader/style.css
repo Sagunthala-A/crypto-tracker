@@ -3,8 +3,8 @@
     align-items: center;
     justify-content: center;
     width: 100vw;
-    height: 80vh;
-    /* height:57vh; */
+    /* height: 80vh; */
+    height:57vh;
     background-color: var(--black);
     z-index: 1000;
 }

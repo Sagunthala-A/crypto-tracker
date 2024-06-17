@@ -6,6 +6,7 @@ export async function getCoinData(id, setCoinData, setIsLoading) {
   try {
     const response = await axios.get(`${API_URL}/${id}`);
     convertCoinData(response.data, setCoinData);
+    setIsLoading(false);
   } catch (e) {
     console.error("coin-data => Error>>>", e);
     setIsLoading(false);

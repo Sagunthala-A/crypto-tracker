@@ -10,42 +10,47 @@ import { toast } from 'react-toastify';
 {/* <MenuRoundedIcon/> */}
 
 export default function AnchorTemporaryDrawer() {
-   const [open, setOpen] = useState(false);
-   const style ={
-    color:"var(--white)",
-    backgroundColor:"none"
-}
-    const [darkMode, setDarkMode] = useState(
-      localStorage.getItem("theme") == "dark" ? true : false
-    );
+  const [open, setOpen] = useState(false);
+  const style = {
+    color: "var(--white)",
+    backgroundColor: "none",
+  };
+  // Default to dark mode if there is no theme in localStorage
+  const [darkMode, setDarkMode] = useState(
+    localStorage.getItem("theme") === "dark" ||
+      localStorage.getItem("theme") == null
+  );
 
-    useEffect(() => {
-      if (localStorage.getItem("theme") == "dark") {
-        setDark();
-      } else {
-        setLight();
-      }
-    }, []);
+  useEffect(() => {
+    const theme = localStorage.getItem("theme");
+    if (!theme ) {
+      handleDark();
+    } else if (theme === "dark") {
+      handleDark();
+    } else {
+      handleLight();
+    }
+  }, []);
 
-    const changeMode = () => {
-      if (localStorage.getItem("theme") != "dark") {
-        setDark();
-      } else {
-        setLight();
-      }
-      setDarkMode(!darkMode);
-      toast.success("Theme Changed!");
-    };
+  const changeMode = () => {
+    if (darkMode) {
+      handleLight();
+    } else {
+      handleDark();
+    }
+    setDarkMode(!darkMode);
+    toast.success("Theme Changed!");
+  };
 
-    const setDark = () => {
-      localStorage.setItem("theme", "dark");
-      document.documentElement.setAttribute("data-theme", "dark");
-    };
+  const handleDark = () => {
+    localStorage.setItem("theme", "dark");
+    document.documentElement.setAttribute("data-theme", "dark");
+  };
 
-    const setLight = () => {
-      localStorage.setItem("theme", "light");
-      document.documentElement.setAttribute("data-theme", "light");
-    };
+  const handleLight = () => {
+    localStorage.setItem("theme", "light");
+    document.documentElement.setAttribute("data-theme", "light");
+  };
   return (
     <div className="drawer">
       <IconButton onClick={() => setOpen(true)}>

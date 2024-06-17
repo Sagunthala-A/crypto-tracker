@@ -1,19 +1,20 @@
-import React,{useState} from 'react';
-import Tab from '@mui/material/Tab';
-import TabContext from '@mui/lab/TabContext';
-import TabList from '@mui/lab/TabList';
-import TabPanel from '@mui/lab/TabPanel';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Grid from './Grid';
-import List from './List';
-import './style.css';
-import Button from '../Common/Button';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import Tab from "@mui/material/Tab";
+import TabContext from "@mui/lab/TabContext";
+import TabList from "@mui/lab/TabList";
+import TabPanel from "@mui/lab/TabPanel";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Grid from "../Grid";
+import List from "../List";
+import "./TabsComponent.css";
+import { Link } from "react-router-dom";
+import Button from "../../Common/Button";
+import { v4 as uuidv4 } from "uuid";
 
-export default function LabTabs({
+
+function TabsComponent({
   data,
   setSearch,
-  handleRemoveFromWatchlist,
   setWatch,
 }) {
   const [value, setValue] = useState("1");
@@ -54,11 +55,12 @@ export default function LabTabs({
         </TabList>
         <TabPanel value="1" className="grid">
           {data.length > 0 ? (
-            data.map((coin, ind) => (
+            data.map((coin, i) => (
               <Grid
                 coin={coin}
-                key={ind}
+                key={uuidv4()}
                 setWatch={setWatch}
+                delay={(i % 8) * 0.2}
               />
             ))
           ) : (
@@ -76,12 +78,13 @@ export default function LabTabs({
         <TabPanel value="2" className="list">
           {data.length > 0 ? (
             <table>
-              {data.map((coin, ind) => (
+              {data.map((coin, i) => (
                 // <Link to={`/coin/${coin.id}`}>
                 <List
                   coin={coin}
-                  key={ind}
+                  key={uuidv4()}
                   setWatch={setWatch}
+                  delay={(i % 8) * 0.2}
                 />
                 // </Link>
               ))}
@@ -91,13 +94,7 @@ export default function LabTabs({
               className="no__items"
               style={{ padding: "0px !important", margintop: "0rem" }}
             >
-              <h1
-                onClick={() => {
-                  console.log("sdf");
-                }}
-              >
-                Sorry, Couldn't find the coin you're looking for 😞
-              </h1>
+              <h1>Sorry, Couldn't find the coin you're looking for 😞</h1>
               <Button
                 text={"Clear Search"}
                 onClick={() => {
@@ -112,3 +109,4 @@ export default function LabTabs({
   );
 }
 
+export default TabsComponent;

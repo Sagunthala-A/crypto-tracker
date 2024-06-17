@@ -9,6 +9,8 @@ export async function getCoinData(id, setCoinData, setIsLoading) {
   } catch (e) {
     console.error("coin-data => Error>>>", e);
     setIsLoading(false);
+    // return [];
   }
+
 }
 

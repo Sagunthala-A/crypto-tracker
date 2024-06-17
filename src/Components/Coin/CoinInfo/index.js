@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './style.css';
 
-
 function CoinInfo ({coinData}) {
     const [flag,setFlag] = useState(true);
 

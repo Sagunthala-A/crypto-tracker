@@ -1,9 +1,7 @@
 import axios from "axios";
 import { API_URL } from "../consonants";
 
-export const get100Coins = async (
-  setError,
-) => {
+export const get100Coins = async (setError) => {
   try {
     const response = await axios.get(
       `${API_URL}/markets?vs_currency=usd&order=market_cap_desc`
@@ -11,6 +9,6 @@ export const get100Coins = async (
     if(response) return response.data;
   } catch (error) {
     if(setError) setError(error.message);
-    console.log("error>>>", error);
+    console.log("100-coins => error>>>", error);
   }
 };

@@ -9,8 +9,8 @@ export const getCoinPrices = (id, days, priceType) => {
         return response.data[priceType];
       })
       .catch((error) => {
-        console.log("Error>>>", error)
+        console.log("coin-price-type => Error>>>", error)
       });
-      if(prices) {return prices} else {return }
+      if(prices) {return prices} else {return []}
 }
 

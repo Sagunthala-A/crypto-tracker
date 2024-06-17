@@ -8,6 +8,8 @@ import Loader from '../Components/Common/Loader';
 import BackToTop from '../Components/Common/BackToTop';
 import PaginationComponent from '../Components/Dashboard/PaginationComponent';
 import ApiRejected from '../Components/Common/ApiRejected';
+import Button from '../Components/Common/Button';
+import TabsComponent from '../Components/Dashboard/TabsComponent/TabsComponent';
 
 function DashboardPage() {
   const [data,setData] = useState([]);
@@ -29,6 +31,7 @@ function DashboardPage() {
   },[])
 
   async function getData(){
+    setIsLoading(true);
     const data = await get100Coins(
       setData,
       setError,
@@ -42,10 +45,17 @@ function DashboardPage() {
     }
   }
 
-   const filteredData = data.length>0 && data.filter((coin)=>
-      (coin.name).toLowerCase().includes(search.toLowerCase()) ||
-      (coin.symbol).toLowerCase().includes(search.toLowerCase())
-    )
+  // const filteredData = data && data.length>0 && data.filter((coin)=>
+  //     (coin.name).toLowerCase().includes(search.toLowerCase()) ||
+  //     (coin.symbol).toLowerCase().includes(search.toLowerCase())
+  //   )
+   const filteredData = Array.isArray(data)
+     ? data.filter(
+         (coin) =>
+           coin.name.toLowerCase().includes(search.toLowerCase()) ||
+           coin.symbol.toLowerCase().includes(search.toLowerCase())
+       )
+     : [];
 
   function onSearchChange(e){
     setSearch(e.target.value)
@@ -64,11 +74,15 @@ function DashboardPage() {
             <ApiRejected error={error} />
           ) : (
             <>
-              {data && (
+              {data.length > 0 ? (
                 <div>
                   {/* if promise is resolved */}
                   <Search search={search} onSearchChange={onSearchChange} />
-                  <Dashboard
+                  {/* <Dashboard
+                    data={search ? filteredData : paginatedCoins}
+                    setSearch={setSearch}
+                  /> */}
+                  <TabsComponent
                     data={search ? filteredData : paginatedCoins}
                     setSearch={setSearch}
                   />
@@ -80,8 +94,18 @@ function DashboardPage() {
                     />
                   )}
                 </div>
+              ) : (
+                <div className="no__items grid__noItems">
+                  <h1>Sorry, Couldn't find the coin you're looking for 😞</h1>
+                  <Button
+                    text={"Clear in dash pahe Search"}
+                    onClick={() => {
+                      setSearch("");
+                    }}
+                  ></Button>
+                </div>
               )}
-              </>
+            </>
           )}
           <Footer />
         </>

@@ -11,14 +11,13 @@ import LineChart from "../Components/Coin/LineChart";
 import { getCoinPrices } from "../Functions/getCoinPrices";
 import SelectDays from "../Components/Coin/SelectDays";
 import PriceTypeToggle from "../Components/Coin/PriceTypeToggle";
-import { settingChartData } from "../Functions/settingChartData";
 
 function CoinPage() {
     const {id} = useParams();
-    const [coinData,setCoinData] = useState();
+    const [coinData,setCoinData] = useState({});
     const [isLoading,setIsLoading] = useState(true);
     const [days,setDays] = useState(7);
-    const [chartData,setChartData] = useState({});
+    const [chartData,setChartData] = useState([]);
     const [priceType,setPriceType] = useState("prices")
 
     useEffect(()=>{
@@ -29,22 +28,23 @@ function CoinPage() {
       setIsLoading(true);
       const data = await getCoinData(id, setCoinData,setIsLoading);
       const prices = await getCoinPrices(id, days, priceType);
-      setChartData(prices);
-      setIsLoading(false);
+      if(prices){
+        setChartData(prices);
+        setIsLoading(false);
       }
+      
+    }
       
     const handleDaysChange = async (event) => {
       setIsLoading(true);
       setDays(event.target.value);
       const prices = await getCoinPrices(id,event.target.value,priceType)
       if(prices){
-        console.log("prices..",prices)
         setChartData(prices);
         // settingChartData(setChartData, prices);
         setIsLoading(false);
       }
     };
-
 
   const handlePriceTypeToggle = async(event) => {
     setIsLoading(true);
@@ -67,28 +67,40 @@ function CoinPage() {
         </div>
       ) : (
         <>
-          {coinData && (
-            <>
-              <div className="coin__listWrapper">
-                <List coin={coinData} />
-              </div>
-              <div className="coin__listWrapper lineChart__wrapper">
-                  <SelectDays days={days} handleDaysChange={handleDaysChange} isPTag={true}/>
-                <div>
-                  <PriceTypeToggle
+          {coinData &&
+            coinData?.length>0 &&(
+              <>
+                {/* {
+              console.log("coin page chart data>>",chartData,"<<<<<coin page coin data>>",coinData)
+            } */}
+                <div className="coin__listWrapper">
+                  <List coin={coinData} />
+                </div>
+                <div className="coin__listWrapper lineChart__wrapper">
+                  <SelectDays
+                    days={days}
+                    handleDaysChange={handleDaysChange}
+                    isPTag={true}
+                  />
+                  <div>
+                    <PriceTypeToggle
+                      priceType={priceType}
+                      handlePriceTypeToggle={handlePriceTypeToggle}
+                    />
+                  </div>
+                  <LineChart
+                    chartData={chartData}
                     priceType={priceType}
-                    handlePriceTypeToggle={handlePriceTypeToggle}
+                    labels={[coinData.name]}
                   />
                 </div>
-                <LineChart chartData={chartData} priceType={priceType} />
-              </div>
-              <div className="coin__listWrapper">
-                <div className="coin__list">
-                  {coinData && <CoinInfo coinData={coinData} />}
+                <div className="coin__listWrapper">
+                  <div className="coin__list">
+                    {coinData && <CoinInfo coinData={coinData} />}
+                  </div>
                 </div>
-              </div>
-            </>
-          )}
+              </>
+            )}
         </>
       )}
       <Footer />

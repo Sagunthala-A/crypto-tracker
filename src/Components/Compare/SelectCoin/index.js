@@ -3,7 +3,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import "./style.css";
 
-export default function SelectCoin({ coin1, coin2, allCoins, handleCoinChange }) {
+export default function SelectCoin({ coin1, coin2, allCoins, handleCoinChange}) {
   const selectStyle = {
     height: "2.5rem",
     color: "var(--white)",
@@ -33,11 +33,11 @@ export default function SelectCoin({ coin1, coin2, allCoins, handleCoinChange })
         {allCoins &&
           allCoins
             .filter((coin) => coin.id != coin2)
-            .map((coin, index) => (
-              <MenuItem key={index} value={coin.id}>
+            .map((coin, index) => {
+              return <MenuItem key={index} value={coin.id}>
                 {coin.name}
               </MenuItem>
-            ))}
+})}
             
       </Select>
       <label id="demo-simple-select-label-2">Crypto 2</label>
@@ -52,11 +52,13 @@ export default function SelectCoin({ coin1, coin2, allCoins, handleCoinChange })
         {allCoins &&
           allCoins
             .filter((coin) => coin.id != coin1)
-            .map((coin, index) => (
-              <MenuItem key={index} value={coin.id}>
-                {coin.name}
-              </MenuItem>
-            ))}
+            .map((coin, index) => {
+             return (
+               <MenuItem key={index} value={coin.id}>
+                 {coin.name}
+               </MenuItem>
+             );
+})}
       </Select>
     </div>
   );

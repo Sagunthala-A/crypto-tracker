@@ -8,13 +8,14 @@ import {
   Title,
   Tooltip,
   Legend,
+  Filler,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { convertDate } from "../../../Functions/convertDate";
 import "./style.css"; // Import your CSS file
 import { convertNumber } from "../../../Functions/convertNumber";
 
-const LineChart = ({chartData, multiAxis, priceType,chartData2 }) => {
+const LineChart = ({chartData, multiAxis, priceType,chartData2,labels}) => {
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -22,20 +23,20 @@ const LineChart = ({chartData, multiAxis, priceType,chartData2 }) => {
     LineElement,
     Title,
     Tooltip,
-    Legend
+    Legend,
+    Filler,
   );
 
   const options = {
     responsive: true,
-    // maintainAspectRatio: false,
     plugins: {
       legend: {
         display: multiAxis ? true : false,
       },
-      interaction: {
-        mode: "index",
-        intersect: false,
-      },
+    },
+    interaction: {
+      mode: "index",
+      intersect: false,
     },
     scales: {
       y: {
@@ -72,41 +73,38 @@ const LineChart = ({chartData, multiAxis, priceType,chartData2 }) => {
       },
     },
   };
-{
-  console.log("char2",chartData2);
-}
+
   const data = {
     labels: chartData && chartData.map((date) => convertDate(date[0])),
     // labels:[1,2,3,4],
     datasets: [
       {
-        label: "chartData1",
+        label: labels?.length > 0 ? labels[0] : "Crypto 1",
         data: chartData && chartData.map((price) => price[1]),
-        // data:[1,2,3,4,5],
-        fill: true, // Ensure fill is set to true to enable background color
+        fill: !multiAxis && true, // Ensure fill is set to true to enable background color
         borderWidth: 2,
-        tension: 0.25, // This is for line graph curve edges
-        backgroundColor: "rgba(58, 128, 233, 0.1)", // Background color
+        tension: 0.25,
+        backgroundColor: "rgba(58, 128, 233, 0.1)",
         pointRadius: 0,
-        borderColor: "#3a80e9", // Line graph color
+        borderColor: "#3a80e9",
+        yAxisID: "y",
       },
-      {
-        label: "CharData 2",
+      multiAxis && {
+        label: labels?.length > 0 ? labels[1] : "Crypto 2",
         data: chartData2 && chartData2.map((price) => price[1]),
-        // data:[1,2,3,4,5],
-        fill: true, // Ensure fill is set to true to enable background color
         borderWidth: 2,
         tension: 0.25, // This is for line graph curve edges
-        backgroundColor: "rgba(58, 18, 233, 0.1)", // Background color
+        backgroundColor: "rgba(58, 18, 233, 0.1)",
         pointRadius: 0,
-        borderColor: "#3969", // Line graph color
+        borderColor: "#3969",
+        yAxisID: "y2",
       },
     ],
   };
 
   return (
     <div className="chart-container">
-      <Line options={options} data={data} className="line"/>
+      <Line options={options} data={data}  style={{display:"inline-block"}}/>
     </div>
   );
 };

@@ -1,17 +1,32 @@
 import { toast } from "react-toastify";
-export const addToWatchlist = (id) => {
-  let items = localStorage.getItem("watchlist");
-  if (items) {
-    let arr = JSON.parse(items);
-    if (!arr.includes(id)) {
-      arr.push(id);
-      localStorage.setItem("watchlist", JSON.stringify(arr));
+
+export const addToWatchlist = (e, id,setWatch) => {
+  e.preventDefault();
+  let watchlist = JSON.parse(localStorage.getItem("watchlist"));
+
+  if (watchlist) {
+    if (!watchlist.includes(id)) {
+      watchlist.push(id);
+      toast.success(
+        `${
+          id.substring(0, 1).toUpperCase() + id.substring(1)
+        } - added to the watchlist`
+      );
+    } else {
+      toast.error(
+        `${
+          id.substring(0, 1).toUpperCase() + id.substring(1)
+        } - is already added to the watchlist!`
+      );
     }
   } else {
-    var arr = JSON.stringify([id]);
-    localStorage.setItem("watchlist", arr);
+    watchlist = [id];
+    toast.success(
+      `${
+        id.substring(0, 1).toUpperCase() + id.substring(1)
+      } - added to the watchlist`
+    );
   }
-  toast.success(
-    `${id.slice(0, 1).toUpperCase() + id.slice(1)} - Added To The Watchlist!`
-  );
+  if(setWatch) setWatch(watchlist);
+  localStorage.setItem("watchlist", JSON.stringify(watchlist));
 };

@@ -11,12 +11,21 @@ import { useState } from "react";
 import { IconButton } from "@mui/material";
 import { removeFromWatchlist } from "../../../Functions/removeFromWatchlist.js";
 import { addToWatchlist } from "../../../Functions/addtoWatchlist.js";
+import { motion } from "framer-motion";
 
-function List({ coin }) {
-  const [added,setAdded] = useState(false);
+function List({ coin, setWatch, delay }) {
+  const watchlist = JSON.parse(localStorage.getItem("watchlist"));
+  const [isCoinAdded, setIsCoinAdded] = useState(watchlist?.includes(coin.id));
+  // const [added, setAdded] = useState(watchlist?.includes(coin.id));
+
   return (
     <Link to={`/coin/${coin.id}`}>
-      <tr className="list__row">
+      <motion.tr
+        className="list__row"
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5, delay: delay}}
+      >
         <Tooltip title={`${coin.name}-image`} placement="bottom-start">
           <td className="td__logo">
             <img className="" src={coin.image} alt={`${coin.name}_logo`} />
@@ -43,7 +52,7 @@ function List({ coin }) {
             >
               {coin.price_change_percentage_24h.toFixed(2)}%
             </div>
-
+            
             <div
               className={
                 coin.price_change_percentage_24h >= 0
@@ -95,16 +104,16 @@ function List({ coin }) {
         <IconButton
           onClick={(e) => {
             e.preventDefault();
-            if (added) {
-              removeFromWatchlist(coin.id);
-              setAdded(false);
+            if (isCoinAdded) {
+              // setIsCoinAdded(false);
+              removeFromWatchlist(e, coin.id, setIsCoinAdded, setWatch);
             } else {
-              addToWatchlist(coin.id);
-              setAdded(true);
+              setIsCoinAdded(true);
+              addToWatchlist(e, coin.id);
             }
           }}
         >
-          {added ? (
+          {isCoinAdded ? (
             <StarRoundedIcon
               className={`watchlist-icon ${
                 coin.price_change_percentage_24h < 0 && "watchlist-icon-red"
@@ -119,13 +128,10 @@ function List({ coin }) {
           )}
         </IconButton>
         {/* <td className="star__bookmark">@%&*</td> */}
-      </tr>
+      </motion.tr>
     </Link>
   );
-  
 }
 
 export default List;
-
-
 

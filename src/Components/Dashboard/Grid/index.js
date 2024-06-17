@@ -8,13 +8,24 @@ import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import StarBorderRoundedIcon from "@mui/icons-material/StarBorderRounded";
 import { removeFromWatchlist } from '../../../Functions/removeFromWatchlist';
 import { addToWatchlist } from '../../../Functions/addtoWatchlist';
+import { motion } from "framer-motion";
 
-function Grid({coin}) {
-  const [added, setAdded] = useState(true);
+function Grid({ coin, setWatch, delay }) {
+  const watchlist = JSON.parse(localStorage.getItem("watchlist"));
+  const [isCoinAdded, setIsCoinAdded] = useState(watchlist?.includes(coin.id));
+  //  const [watch, setWatch] = useState(
+  //    JSON.parse(localStorage.getItem("watchlist")) || []
+  //  );
+  // const [added, setAdded] = useState(watch?.includes(coin.id));
   return (
     <Link to={`/coin/${coin.id}`}>
       {coin.price_change_percentage_24h >= 0 ? (
-        <div className="grid__container ">
+        <motion.div
+          className="grid__container "
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: delay}}
+        >
           <div className="grid__logo">
             <div className="gridLogo__imgName">
               <img src={coin.image} alt={`${coin.name}_logo`} />
@@ -26,31 +37,52 @@ function Grid({coin}) {
             <IconButton
               onClick={(e) => {
                 e.preventDefault();
-                if (added) {
-                  removeFromWatchlist(coin.id);
-                  setAdded(false);
+                if (isCoinAdded) {
+                  // setIsCoinAdded(false);
+                  removeFromWatchlist(e, coin.id, setIsCoinAdded, setWatch);
                 } else {
-                  addToWatchlist(coin.id);
-                  setAdded(true);
+                  setIsCoinAdded(true);
+                  addToWatchlist(e, coin.id);
                 }
               }}
+              // onClick={(e) => {
+              //   e.preventDefault();
+              //   if (added) {
+              //     setAdded(false);
+              //     removeFromWatchlist(e, coin.id, setAdded, setWatch);
+              //   } else {
+              //     setAdded(true);
+              //     addToWatchlist(e, coin.id, setWatch);
+              //   }
+              // }}
             >
-              {added ? (
+              {isCoinAdded ? (
                 <StarRoundedIcon
-                  className={`watchlist-icon star`}
+                  className={`watchlist-icon `}
                   sx={{ fontSize: "2rem !important" }}
                 />
               ) : (
                 <StarBorderRoundedIcon
-                  className={`watchlist-icon star`}
+                  className={`watchlist-icon `}
                   sx={{ fontSize: "2rem !important" }}
                 />
               )}
+
+              {/* {added ? (
+                <StarRoundedIcon
+                  className={`watchlist-icon `}
+                  sx={{ fontSize: "2rem !important" }}
+                />
+              ) : (
+                <StarBorderRoundedIcon
+                  className={`watchlist-icon `}
+                  sx={{ fontSize: "2rem !important" }}
+                />
+              )} */}
             </IconButton>
           </div>
           <div className="chip__flex">
             <p className="price__chip">
-              {" "}
               {coin.price_change_percentage_24h.toFixed(2)}%
             </p>
             <div className="icon__chip">
@@ -65,9 +97,14 @@ function Grid({coin}) {
             <p>Total Volume: {coin.total_volume.toLocaleString()}</p>
             <p>Market Cap: ${coin.market_cap.toLocaleString()}</p>
           </div>
-        </div>
+        </motion.div>
       ) : (
-        <div className="grid__container redGrid">
+        <motion.div
+          className="grid__container redGrid"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: delay}}
+        >
           <div className="grid__logo">
             <div className="gridLogo__imgName">
               <img src={coin.image} alt={`${coin.name}_logo`} />
@@ -79,16 +116,16 @@ function Grid({coin}) {
             <IconButton
               onClick={(e) => {
                 e.preventDefault();
-                if (added) {
-                  removeFromWatchlist(coin.id);
-                  setAdded(false);
+                if (isCoinAdded) {
+                  // setIsCoinAdded(false);
+                  removeFromWatchlist(e, coin.id, setIsCoinAdded, setWatch);
                 } else {
-                  addToWatchlist(coin.id);
-                  setAdded(true);
+                  setIsCoinAdded(true);
+                  addToWatchlist(e, coin.id);
                 }
               }}
             >
-              {added ? (
+              {isCoinAdded ? (
                 <StarRoundedIcon
                   className={`watchlist-icon watchlist-icon-red`}
                   sx={{ fontSize: "2rem !important" }}
@@ -117,10 +154,12 @@ function Grid({coin}) {
             <p>Total Volume: {coin.total_volume.toLocaleString()}</p>
             <p>Market Cap: {coin.market_cap.toLocaleString()}</p>
           </div>
-        </div>
+        </motion.div>
       )}
     </Link>
   );
 }
 
 export default Grid;
+
+

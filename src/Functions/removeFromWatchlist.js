@@ -1,19 +1,39 @@
 import { toast } from "react-toastify";
 
-export const removeFromWatchlist = (id) => {
-  if (window.confirm("Are you sure you want to remove this coin")) {
-    let items = localStorage.getItem("watchlist");
-    let arr = JSON.parse(items);
-    localStorage.setItem(
-      "watchlist",
-      JSON.stringify(arr.filter((item) => item != id))
-    );
+export const removeFromWatchlist = (e, id, setIsCoinAdded, setWatch) => {
+  e.preventDefault();
+  if (window.confirm("Are you sure you want to remove this coin?")) {
+    setIsCoinAdded(false);
+    let watchlist = JSON.parse(localStorage.getItem("watchlist"));
+    const newList =
+      watchlist?.length > 0 && watchlist.filter((coin) => coin != id);
+    if (setWatch) {
+      setWatch(newList);
+      
+    }
+    localStorage.setItem("watchlist", JSON.stringify(newList));
     toast.success(
       `${
-        id.slice(0, 1).toUpperCase() + id.slice(1)
-      } removed from the watchlist!`
+        id.substring(0, 1).toUpperCase() + id.substring(1)
+      } - has been removed!`
     );
+    // window.location.reload();
+    
   } else {
-    toast.error("Couldnt remove the coin from the watchlist!");
+    toast.error(
+      `${
+        id.substring(0, 1).toUpperCase() + id.substring(1)
+      } - could not be removed!`
+    );
+    setIsCoinAdded(true);
   }
 };
+
+
+
+
+
+
+
+
+

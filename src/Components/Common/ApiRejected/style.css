@@ -1,6 +1,13 @@
+.apiRejected__wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 58vh;
+}
+
 .api__rejected{
     font-weight: 600;
-    margin:5rem;
+    margin:3rem;
     text-align: center;
     padding:2rem 2rem;
     color:var(--white);

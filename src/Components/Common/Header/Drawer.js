@@ -15,16 +15,24 @@ export default function AnchorTemporaryDrawer() {
     backgroundColor:"none"
 }
   return (
-    <div className='drawer'>
+    <div className="drawer">
       <IconButton onClick={() => setOpen(true)}>
-        <MenuRoundedIcon className="header__icon"  sx={style} />
+        <MenuRoundedIcon className="header__icon" sx={style} />
       </IconButton>
-      <Drawer anchor="right" open={open} onClose={() => setOpen(false)} >
+      <Drawer anchor="right" open={open} onClose={() => setOpen(false)}>
         <div className="drawer-links">
-            <Link className='header__links' to='/'>Home</Link>
-            <Link className='header__links' to='/compare'>Compare</Link>
-            <Link className='header__links'>Watchlist</Link>
-            <Link className='header__links' to='/dashboard'>Dashboard</Link>
+          <Link className="header__links" to="/">
+            Home
+          </Link>
+          <Link className="header__links" to="/compare">
+            Compare
+          </Link>
+          <Link className="header__links" to="/watchlist">
+            Watchlist
+          </Link>
+          <Link className="header__links" to="/dashboard">
+            Dashboard
+          </Link>
         </div>
       </Drawer>
     </div>

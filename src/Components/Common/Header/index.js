@@ -7,45 +7,46 @@ import { Switch } from '@mui/material';
 import { toast } from 'react-toastify';
 
 function Header() {
-    const [darkMode, setDarkMode] = useState(
-      localStorage.getItem("theme") == "dark" ? true : false
-    )
+    const [lightMode, setLightMode] = useState(
+      localStorage.getItem("theme") === "light"
+    );
 
     useEffect(() => {
-      if (localStorage.getItem("theme") == "dark") {
-        setDark();
+      const theme = localStorage.getItem("theme");
+      if (theme === "light") {
+        handleLight();
       } else {
-        setLight();
+        handleDark();
       }
-    }, [])
+    }, []);
 
     const changeMode = () => {
-      if (localStorage.getItem("theme") != "dark") {
-        setDark();
+      if (localStorage.getItem("theme") !== "dark") {
+        handleDark();
       } else {
-        setLight();
+        handleLight();
       }
-      setDarkMode(!darkMode);
+      setLightMode(!lightMode);
       toast.success("Theme Changed!");
-    }
+    };
 
-    const setDark = () => {
+    const handleDark = () => {
       localStorage.setItem("theme", "dark");
       document.documentElement.setAttribute("data-theme", "dark");
-    }
+    };
 
-    const setLight = () => {
+    const handleLight = () => {
       localStorage.setItem("theme", "light");
       document.documentElement.setAttribute("data-theme", "light");
-    }
-
+    };
+    
   return (
     <div className="header">
       <h1>
         CryptoTracker<span>.</span>
       </h1>
       <div className="header__left">
-        <Switch checked={darkMode} onClick={() => changeMode()} />
+        <Switch checked={lightMode} onClick={() => changeMode()} />
         <Link className="header__links" to="/">
           Home
         </Link>

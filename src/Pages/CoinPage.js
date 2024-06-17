@@ -67,8 +67,7 @@ function CoinPage() {
         </div>
       ) : (
         <>
-          {coinData &&
-            coinData?.length>0 &&(
+          {coinData &&(
               <>
                 {/* {
               console.log("coin page chart data>>",chartData,"<<<<<coin page coin data>>",coinData)

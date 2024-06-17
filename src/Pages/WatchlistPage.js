@@ -4,7 +4,6 @@ import ApiRejected from "../Components/Common/ApiRejected";
 import Header from "../Components/Common/Header";
 import Footer from "../Components/Common/Footer";
 import Loader from "../Components/Common/Loader";
-import Dashboard from "../Components/Dashboard";
 import Button from "../Components/Common/Button";
 import TabsComponent from "../Components/Dashboard/TabsComponent/TabsComponent";
 
@@ -42,13 +41,6 @@ function WatchlistPage() {
     setIsLoading(false);
   }
 
-  const handleRemoveFromWatchlist = (id) => {
-    if (window.confirm("Are you sure you want to remove this coin?")) {
-      const updatedWatchlist = watch.filter((coin) => coin !== id);
-      localStorage.setItem("watchlist", JSON.stringify(updatedWatchlist));
-    }
-  };
-
   return (
     <>
       <Header />
@@ -62,7 +54,6 @@ function WatchlistPage() {
             data={filteringCoins}
             setWatch={setWatch}
           />
-          {/* <Dashboard data={filteringCoins} setWatch={setWatch} /> */}
         </div>
       ) : (
         <div className="watchlist__page">

@@ -78,10 +78,6 @@ function DashboardPage() {
                 <div>
                   {/* if promise is resolved */}
                   <Search search={search} onSearchChange={onSearchChange} />
-                  {/* <Dashboard
-                    data={search ? filteredData : paginatedCoins}
-                    setSearch={setSearch}
-                  /> */}
                   <TabsComponent
                     data={search ? filteredData : paginatedCoins}
                     setSearch={setSearch}
